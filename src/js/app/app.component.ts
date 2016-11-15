@@ -15,6 +15,11 @@ interface Car {
 		<ul>
 			<li *ngFor="let color of colors">{{color}}</li>
 		</ul>
+		<div>
+			<label>New Color</label>
+			<input type="text" [(ngModel)]="newColor">
+			<button type="button" (click)="addColor()">Add Color</button>
+		</div>
 	`
 })
 export class AppComponent {
@@ -23,8 +28,9 @@ export class AppComponent {
 
 	colors: string[] = ['red','white','blue','green','yellow'];
 
-	cars: Car[] = [
-		{ make: 'a', model: 'b', year: 1234, color: 'f', price: 123 }
-	]
+	newColor: string = '';
 
+	addColor() {
+		this.colors.push(this.newColor);
+	}
 }
