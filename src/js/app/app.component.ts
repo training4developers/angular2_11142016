@@ -1,18 +1,30 @@
-import { Component, Injectable, OnInit, EventEmitter, Input } from '@angular/core';
+import { Component } from '@angular/core';
+
+interface Car {
+	make: string,
+	model: string,
+	year: number,
+	color: string,
+	price: number
+}
 
 @Component({
 	selector: 'my-app',
-	template: require('./app.component.html'),
-	styles: [require('./app.component.scss')]
+	template: `
+		<header>{{headerText}}</header>
+		<ul>
+			<li *ngFor="let color of colors">{{color}}</li>
+		</ul>
+	`
 })
 export class AppComponent {
 
-	header: string = 'app comp header';
+	headerText: string = 'List of Colors';
 
-	colors: string[] = ['red','blue','yellow','black'];
+	colors: string[] = ['red','white','blue','green','yellow'];
 
-	send() {
-		console.log('test');
-	}
+	cars: Car[] = [
+		{ make: 'a', model: 'b', year: 1234, color: 'f', price: 123 }
+	]
 
 }
