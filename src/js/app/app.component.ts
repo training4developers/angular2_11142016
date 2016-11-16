@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Car } from './interfaces/car';
+import { Cars } from './services/cars';
 
 @Component({
 	selector: 'my-app',
@@ -14,21 +15,22 @@ import { Car } from './interfaces/car';
 		<!-- component 3 -->
 		<color-form (newColorAdded)="addColor($event)"></color-form>
 
-		<car-table [cars]="cars"></car-table>
-
+		<car-table [cars]="carList"></car-table>
 	`
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
 	headerCaption: string = 'List of Colors';
 
 	colors: string[] = ['red','white','blue','green','yellow'];
 
-	cars: Car[] = [
-		{ id: 1, make: 'Ford', model:'Fusion', year:2004 },
-		{ id: 2, make: 'Chevy', model:'Impala', year:2004 },
-		{ id: 3, make: 'Tesla', model:'S', year:2014 }
-	]
+	constructor(private cars: Cars) { }
+
+	carList: Car[];
+
+	ngOnInit() {
+		this.cars.getAll().then(cars => this.carList = cars);
+	}
  
 	addColor(newColor: string) {
 		// mutates the array, when adding the color

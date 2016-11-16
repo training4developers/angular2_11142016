@@ -29,10 +29,7 @@ export class CarViewRowComponent {
 	template: `
 		<table class="table table-striped">
 			<tbody>
-				<template ngFor let-car [ngForOf]="cars">
-					<tr class="car-view-row" *ngIf="editRowId !== car.id" [car]="car" (edit)="displayCarId($event)"></tr>
-					<tr class="car-edit-row" *ngIf="editRowId === car.id" [car]="car" (edit)="displayCarId($event)"></tr>
-				</template>
+				<tr class="car-view-row" *ngFor="let car of cars" [car]="car" (edit)="displayCarId($event)"></tr>
 			</tbody>
 		</table>
 	`
