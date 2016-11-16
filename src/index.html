@@ -8,5 +8,39 @@
   </head>
   <body>
     <my-app>Loading...</my-app>
+		<script>
+
+
+			function ajax(options) {
+
+				return new Promise(function(resolve, reject) {
+
+					var xhr = new  XMLHttpRequest();
+
+					xhr.addEventListener('readystatechange', function() {
+
+						if (xhr.readyState === 4 && xhr.status !== 200) {
+							reject('server call failed');
+						}
+
+						if (xhr.readyState === 4 && xhr.status === 200) {
+							resolve(JSON.parse(xhr.responseText));
+						}
+
+					});
+
+					xhr.open(options.method, options.url);
+					xhr.send();
+				});
+
+
+			}
+
+			ajax({ method: 'GET', url: 'http://localhost:3010/widgets' }).then(function(widgets) {
+				console.dir(widgets);
+			}).catch(err => console.log(err));
+
+
+		</script>
   </body>
 </html>

@@ -7,4 +7,4 @@ if (process.env['ENV'] === 'production') {
 
 import { AppModule } from './app/app.module';
 
-platformBrowserDynamic().bootstrapModule(AppModule);
+//platformBrowserDynamic().bootstrapModule(AppModule);

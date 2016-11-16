@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base href="/">
+    <title>Comprehensive Angular 2</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <my-app>Loading...</my-app>
+		<script>
+
+			const p1 = new Promise(resolve => setTimeout(() => resolve('a'), 2000));
+			const p2 = new Promise(resolve => setTimeout(() => resolve('b'), 4000));
+			const p3 = new Promise((resolve, reject) => setTimeout(() => reject('c'), 6000));
+			const p4 = new Promise(resolve => setTimeout(() => resolve('d'), 8000));
+
+			p1.then(function() { console.log('p1 resolved'); });
+			p2.then(function() { console.log('p2 resolved'); });
+			p3.then(function() { console.log('p3 resolved'); }).catch(() => console.log('p3 rejected'));
+			p4.then(function() { console.log('p4 resolved'); });
+
+			const p5 = Promise.all([p1,p2]).then(results => console.log(results));
+
+			Promise.all([p5,p3,p4])
+				.then(results => console.log(results))
+				.catch(function(results) {
+					console.log('one failed');
+					console.log(results);
+				});
+
+
+		</script>
+  </body>
+</html>

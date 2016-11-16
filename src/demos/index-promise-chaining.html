@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base href="/">
+    <title>Comprehensive Angular 2</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <my-app>Loading...</my-app>
+		<script>
+
+			var youngMan = new Promise(function youngLady(resolve, reject) {
+
+					setTimeout(function() {
+
+						resolve('she is madly in love with the young man');
+
+						throw new Error('have an argument');
+					}, 3000);
+
+			});
+
+			youngMan.then(function(results) {
+				console.log(results);
+				console.log('she said yes');
+				console.log('go look for location');
+
+				// return new Promise(function(resolve, reject) {
+				// 	setTimeout(function() {
+				// 		resolve('found a location');
+				// 	}, 3000)
+				// });
+
+				//return 'we go to church with joe, get married there';
+
+				throw new Error('have an argument');
+
+			}).then(function(results) {
+				console.log(results);
+				console.log('time to find a tux');
+
+				throw new Error('have an argument');
+
+			}, function(results) {
+				console.log(results);
+				console.log('she said no');
+			}).catch(function(results) {
+				console.log(results);
+				console.log('she said no');
+			})
+			.then(function() {
+				
+			});
+
+			console.log('young man is waiting...');
+
+
+		</script>
+  </body>
+</html>
